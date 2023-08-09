@@ -6,7 +6,7 @@ export async function getAllPosts() {
   try {
     const res = await fetch(`${API_URL}/posts`);
     const result = await res.json();
-    const posts = result;
+    const posts = result.data.posts;
     return posts;
   } catch (error) {
     console.error(`Unable to retrieve posts!`, error);
