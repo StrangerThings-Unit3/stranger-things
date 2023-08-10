@@ -12,3 +12,48 @@ export async function getAllPosts() {
     console.error(`Unable to retrieve posts!`, error);
   }
 }
+
+// Creating a user with this POST request
+export async function registerUser(username, password) {
+  try {
+    const res = await fetch(`${API_URL}/users/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user: {
+          username: username,
+          password: password,
+        },
+      }),
+    });
+    const result = await res.json();
+    alert(result.data.message);
+    return result;
+  } catch (error) {
+    console.error('Unable to create a player!', error);
+  }
+}
+
+export async function LogUser(username, password) {
+  try {
+    const response = await fetch(`${API_URL}/users/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user: {
+          username: username,
+          password: password,
+        },
+      }),
+    });
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+}
