@@ -12,3 +12,22 @@ export async function getAllPosts() {
     console.error(`Unable to retrieve posts!`, error);
   }
 }
+
+// Fetch method for creating a new post
+
+const postMessage = async (post) => {
+  try {
+    const res = await fetch(`${API_URL}/posts`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(post),
+    });
+    const result = await res.json();
+    console.log(result);
+  } catch (error) {
+    console.error(`Unable to post message!`, error);
+  }
+}
