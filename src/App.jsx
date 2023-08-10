@@ -1,5 +1,7 @@
 import GetAllPosts from "./components/GetAllPosts";
 import { Route, Routes } from "react-router";
+import "./App.css";
+import "./Index.css";
 
 function App() {
   return (
