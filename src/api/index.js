@@ -13,6 +13,7 @@ export async function getAllPosts() {
   }
 }
 
+
 // Creating a user with this POST request
 export async function registerUser(username, password) {
   try {
@@ -55,5 +56,23 @@ export async function LogUser(username, password) {
     return result;
   } catch (err) {
     console.error(err);
+
+// Fetch method for creating a new post
+
+const postMessage = async (post) => {
+  try {
+    const res = await fetch(`${API_URL}/posts`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(post),
+    });
+    const result = await res.json();
+    console.log(result);
+  } catch (error) {
+    console.error(`Unable to post message!`, error);
+
   }
 }
