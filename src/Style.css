@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: arial, sans-serif;
+}
+
+.navbar {
+  padding: 2.5em;
+  justify-content: space-evenly;
+  background-color: #585e68;
+}
+
+.navbar a {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 25px 25px;
+  margin-top: -40px;
+  text-decoration: none;
+  color: aliceblue;
+}
+
+.navbar a:hover {
+  box-shadow: 0 0 10px aliceblue;
+}
