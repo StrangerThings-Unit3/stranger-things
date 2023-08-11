@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import postMessage from './Api';
 
 const postMessage = ({token, postId}) => {
     
