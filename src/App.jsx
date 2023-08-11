@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router';
 import Register from './components/Register';
 import './Style.css';
 import Navbar from './components/Navbar';
+import Login from './components/Login';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path='/' element={<GetAllPosts />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login />}></Route>
       </Routes>
     </div>
   );
