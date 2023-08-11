@@ -57,6 +57,7 @@ export async function LogUser(username, password) {
     console.error(err);
   }
 }
+
 // Fetch method for creating a new post
 
 export const postMessage = async (post) => {
@@ -74,4 +75,31 @@ export const postMessage = async (post) => {
   } catch (error) {
     console.error(`Unable to post message!`, error);
   }
-};
+}
+
+// Fetch method for making a post
+
+const makePost = async (post) => {  
+  try {
+    const res = await fetch(`${API_URL}/posts`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        post: {
+          title: post.title,
+          description: post.description,
+          price: post.price,
+          willDeliver: post.willDeliver,
+        }
+      }),
+    });
+    const result = await res.json();
+    console.log(result);
+   return result;
+   } catch (error) {
+    console.error(`Unable to make post!`, error);
+  }
+}

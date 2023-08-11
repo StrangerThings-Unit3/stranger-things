@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function MakePost() {
+function makePost() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -84,4 +84,4 @@ function MakePost() {
   );
 }
 
-export default MakePost;
+export default makePost;
