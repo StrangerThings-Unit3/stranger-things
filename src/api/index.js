@@ -103,3 +103,21 @@ const makePost = async (post) => {
     console.error(`Unable to make post!`, error);
   }
 }
+
+// Delete Post 
+  const deletePost = async (post_id) => {                   //not sure if post_id is correct parameter here 
+    try {
+      const res = await fetch(`${API_URL}/posts/`, {
+        method : 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization' : `Bearer ${token}`
+        }
+    });
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error (`Unable to delete post!` , error);
+  }
+}
