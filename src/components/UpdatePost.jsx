@@ -25,3 +25,4 @@ function UpdatePost () {
         </div>
         );
 }
+export default UpdatePost;
