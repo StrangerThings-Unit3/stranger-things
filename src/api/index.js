@@ -77,4 +77,22 @@ export const postMessage = async (post) => {
 };
 
 
-  
+  // Fetch method for updating a post 
+
+export const UpdatePost = async (UpdatePost) => {
+  try {
+    const res = await fetch(`${API_URL}/posts/${postId}`, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(UpdatePost),
+      });
+      const result = await res.json();
+      console.log(result);
+    } catch (error) {
+      console.error(`Unable to update post!`, error);
+    }
+  };
+
