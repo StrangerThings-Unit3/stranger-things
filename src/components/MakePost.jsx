@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import makePost from "./Api";
 
 function makePost() {
   const [title, setTitle] = useState("");
