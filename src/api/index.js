@@ -1,5 +1,72 @@
-const COHORT_NAME = "2302-ACC-ET-WEB-PT-B";
+/***********************API_URL and Cohort Name variables ************************/
+const COHORT_NAME = '2302-ACC-ET-WEB-PT-B';
 const API_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
+
+/*************************Register, Login and User Data methods***************************/
+
+// Creating a user with this POST request
+export async function registerUser(username, password) {
+  try {
+    const res = await fetch(`${API_URL}/users/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user: {
+          username: username,
+          password: password,
+        },
+      }),
+    });
+    const result = await res.json();
+    alert(result.data.message);
+    return result;
+  } catch (error) {
+    console.error('Unable to create a player!', error);
+  }
+}
+
+// Fetch method to login users
+export async function LogUser(username, password) {
+  try {
+    const response = await fetch(`${API_URL}/users/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user: {
+          username: username,
+          password: password,
+        },
+      }),
+    });
+    const result = await response.json();
+    alert(result.data.message);
+    return result;
+  } catch (err) {
+    console.error('Unable to log user.', err);
+  }
+}
+
+// Fetch method for getting user data
+export const fetchUserData = async (token) => {
+  try {
+    const res = await fetch(`${API_URL}/users/me`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const result = await res.json();
+    return result;
+  } catch (error) {
+    console.error('Unable to fetch user data!', error);
+  }
+};
+
+/*******************************Posts methods******************************** */
 
 // Fetch method to get all data
 export async function getAllPosts() {
@@ -13,59 +80,13 @@ export async function getAllPosts() {
   }
 }
 
-// Creating a user with this POST request
-export async function registerUser(username, password) {
-  try {
-    const res = await fetch(`${API_URL}/users/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user: {
-          username: username,
-          password: password,
-        },
-      }),
-    });
-    const result = await res.json();
-    alert(result.data.message);
-    return result;
-  } catch (error) {
-    console.error("Unable to create a player!", error);
-  }
-}
-
-export async function LogUser(username, password) {
-  try {
-    const response = await fetch(`${API_URL}/users/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user: {
-          username: username,
-          password: password,
-        },
-      }),
-    });
-    const result = await response.json();
-    console.log(result);
-    return result;
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-// Fetch method for creating a new post
-
-export const postMessage = async (post) => {
+// Fetch method for posting messages inside a post
+export const postMessage = async (post, token) => {
   try {
     const res = await fetch(`${API_URL}/posts`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(post),
@@ -78,13 +99,12 @@ export const postMessage = async (post) => {
 };
 
 // Fetch Method to update a post
-
 export const updatePost = async (updatePost) => {
   try {
     const res = await fetch(`${API_URL}/posts`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(updatePost),
@@ -98,47 +118,46 @@ export const updatePost = async (updatePost) => {
 
 // Fetch method for making a post
 
-const makePost = async (post) => {  
-  try {
-    const res = await fetch(`${API_URL}/posts`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        post: {
-          title: post.title,
-          description: post.description,
-          price: post.price,
-          willDeliver: post.willDeliver,
-        }
-      }),
-    });
-    const result = await res.json();
-    console.log(result);
-   return result;
-   } catch (error) {
-    console.error(`Unable to make post!`, error);
-  }
-}
+// export const makePost = async (post, token) => {
+//   try {
+//     const res = await fetch(`${API_URL}/posts`, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         Authorization: `Bearer ${token}`,
+//       },
+//       body: JSON.stringify({
+//         post: {
+//           title: post.title,
+//           description: post.description,
+//           price: post.price,
+//           willDeliver: post.willDeliver,
+//         }
+//       }),
+//     });
+//     const result = await res.json();
+//     console.log(result);
+//    return result;
+//    } catch (error) {
+//     console.error(`Unable to make post!`, error);
+//   }
+// }
 
-// Delete Post 
+// Delete Post
 
-  const deletePost = async (post_id) => {                   //not sure if post_id is correct parameter here 
-    try {
-      const res = await fetch(`${API_URL}/posts/`, {
-        method : 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization' : `Bearer ${token}`
-        }
-    });
-    const result = await response.json();
-    console.log(result);
-    return result;
-  } catch (error) {
-    console.error (`Unable to delete post!` , error);
-  }
-}
-
+//   export const deletePost = async (post_id) => {                   //not sure if post_id is correct parameter here
+//     try {
+//       const res = await fetch(`${API_URL}/posts/`, {
+//         method : 'DELETE',
+//         headers: {
+//           'Content-Type': 'application/json',
+//           'Authorization' : `Bearer ${token}`
+//         }
+//     });
+//     const result = await response.json();
+//     console.log(result);
+//     return result;
+//   } catch (error) {
+//     console.error (`Unable to delete post!` , error);
+//   }
+// }
