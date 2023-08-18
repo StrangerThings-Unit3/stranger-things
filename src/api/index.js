@@ -97,3 +97,67 @@ export const postMessage = async (post, token) => {
     console.error(`Unable to post message!`, error);
   }
 };
+
+// Fetch Method to update a post
+export const updatePost = async (updatePost) => {
+  try {
+    const res = await fetch(`${API_URL}/posts`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(updatePost),
+    });
+    const result = await res.json();
+    console.log(result);
+  } catch (error) {
+    console.error(`Unable to update post!`, error);
+  }
+};
+
+// Fetch method for making a post
+
+// export const makePost = async (post, token) => {
+//   try {
+//     const res = await fetch(`${API_URL}/posts`, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         Authorization: `Bearer ${token}`,
+//       },
+//       body: JSON.stringify({
+//         post: {
+//           title: post.title,
+//           description: post.description,
+//           price: post.price,
+//           willDeliver: post.willDeliver,
+//         }
+//       }),
+//     });
+//     const result = await res.json();
+//     console.log(result);
+//    return result;
+//    } catch (error) {
+//     console.error(`Unable to make post!`, error);
+//   }
+// }
+
+// Delete Post
+
+//   export const deletePost = async (post_id) => {                   //not sure if post_id is correct parameter here
+//     try {
+//       const res = await fetch(`${API_URL}/posts/`, {
+//         method : 'DELETE',
+//         headers: {
+//           'Content-Type': 'application/json',
+//           'Authorization' : `Bearer ${token}`
+//         }
+//     });
+//     const result = await response.json();
+//     console.log(result);
+//     return result;
+//   } catch (error) {
+//     console.error (`Unable to delete post!` , error);
+//   }
+// }
