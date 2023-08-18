@@ -21,6 +21,95 @@
   color: aliceblue;
 }
 
+.link {
+  background-color: #585e68;
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: aliceblue;
+  border: 0;
+}
+
 .navbar a:hover {
   box-shadow: 0 0 10px aliceblue;
+}
+
+/* Home Styling */
+#home h1 {
+  margin: 250px 0;
+  text-align: center;
+}
+
+/* Posts Styling */
+
+.post-actions {
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.search-post {
+  display: block;
+  margin: 0 10px;
+}
+
+/* Login/Register Styling */
+#account-form {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  margin: 20px auto;
+  padding: 25px 10px;
+}
+
+#account-form h1 {
+  text-align: center;
+}
+
+#account-form label {
+  display: block;
+  margin: 10px auto;
+  font-size: 1rem;
+}
+
+#account-form input {
+  display: block;
+  margin: 0 auto;
+  font-size: 1rem;
+}
+
+#account-form button {
+  display: block;
+  font-size: 1rem;
+  padding: 3px 8px;
+  margin: 25px auto 0;
+}
+
+/* Profile Styling */
+
+.profile-header {
+  margin: 100px 0;
+  text-align: center;
+}
+
+.profile-posts-and-messages {
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.your-posts,
+.your-messages {
+  width: 48%;
+  padding: 10px;
+}
+
+.your-posts h2,
+.your-messages h2 {
+  text-align: center;
 }
