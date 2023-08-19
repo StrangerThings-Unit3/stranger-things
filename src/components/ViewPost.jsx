@@ -6,7 +6,7 @@ function ViewPost (postId) {
     useEffect(() =>{
         const fetchPosts = async () => {
             try{
-                const response = await ViewPost(postId);
+                const response = await ViewPostByID(postId);
                 setPosts(response);
             } catch (error) {
                 console.log('Error fetching post:', error);
