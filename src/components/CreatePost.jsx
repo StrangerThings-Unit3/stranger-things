@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 
-function CreatePost({ setToken }) {
+function CreatePost({ setToken, token }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [location, setLocation] = useState('');
   const [willDeliver, setWillDeliver] = useState(false);
-  const [token, setToken] = useState(setToken);
 
   const handleCreatePost = async (event) => {
     event.preventDefault();

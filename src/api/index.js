@@ -69,9 +69,14 @@ export const fetchUserData = async (token) => {
 /*******************************Posts methods******************************** */
 
 // Fetch method to get all data
-export async function getAllPosts() {
+export async function getAllPosts(token) {
   try {
-    const res = await fetch(`${API_URL}/posts`);
+    const res = await fetch(`${API_URL}/posts`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const result = await res.json();
     const posts = result.data.posts;
     return posts;
