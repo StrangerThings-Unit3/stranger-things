@@ -2,23 +2,30 @@ import { useEffect, useState } from "react";
 
 // Function to hold the post data
 function ViewPost (postId) {
-    const [posts, setPosts] = useState([]);
+    const [post, setPost] = useState([]);
     useEffect(() =>{
-        const fetchPosts = async () => {
+        const fetchPost = async () => {
             try{
                 const response = await ViewPostByID(postId);
-                setPosts(response);
+                setPost(response);
             } catch (error) {
                 console.log('Error fetching post:', error);
             }
         };
-fetchPosts();
+fetchPost();
 }, []);
 return (
   <div className='container'>
     <div className='View Post'>
-    {posts.map((post) => {
-          return <PostItem key={post._id} post={post} />;
+    {post((details) => {
+          return (
+            <div className='post-item' key={post.id}>
+            <h2>{details.title}</h2>
+            <p>{details.location}</p>
+            <p>{details.price}</p>
+            <p>{details.title}</p>
+            </div>
+          )
         })}
       </div>
     </div>
