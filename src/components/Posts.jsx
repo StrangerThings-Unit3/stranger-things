@@ -27,7 +27,7 @@ const Posts = ({ posts, token }) => {
         {token ? (
           <Link to={'/posts/create'}>Create a post</Link>
         ) : (
-          <p>Please log in..</p>
+          <p>Please log in to create a post...</p>
         )}
       </div>
       <div className='posts'>
