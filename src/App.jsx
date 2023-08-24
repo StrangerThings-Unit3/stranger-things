@@ -83,7 +83,9 @@ function App() {
         <Route
           path='/posts/create'
           element={<CreatePost setToken={setToken} token={token} />}
-        ></Route>
+        />
+        {/* Create a Route for posts/messages */}
+        {/* Create a Route for posts/update */}
         <Route
           path='/profile'
           element={<Profile userData={userData} posts={posts} />}

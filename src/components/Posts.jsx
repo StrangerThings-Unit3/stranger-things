@@ -27,12 +27,12 @@ const Posts = ({ posts, token }) => {
         {token ? (
           <Link to={'/posts/create'}>Create a post</Link>
         ) : (
-          <p>Please log in to create a post...</p>
+          <p>Please log in or sign up to create a post...</p>
         )}
       </div>
       <div className='posts'>
         {displayPosts.map((post) => {
-          return <PostItem key={post._id} post={post} />;
+          return <PostItem key={post._id} post={post} token={token} />;
         })}
       </div>
     </div>
