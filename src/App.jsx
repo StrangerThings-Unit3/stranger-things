@@ -6,6 +6,8 @@ import AccountForm from './components/AccountForm';
 import Posts from './components/Posts';
 import Profile from './components/Profile';
 import CreatePost from './components/CreatePost';
+import ViewPost from './components/ViewPost';
+import UpdatePost from './components/UpdatePost';
 import './Style.css';
 
 function App() {
@@ -86,6 +88,11 @@ function App() {
         />
         {/* Create a Route for posts/messages */}
         {/* Create a Route for posts/update */}
+        <Route
+          path='/posts/update/:id'
+          element={<UpdatePost posts={posts} token={token} />}
+        />
+        <Route path='/posts/:id' element={<ViewPost posts={posts} />} />
         <Route
           path='/profile'
           element={<Profile userData={userData} posts={posts} />}

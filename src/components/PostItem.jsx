@@ -24,8 +24,8 @@ const PostItem = ({ post, token }) => {
           // If isAuthor is true, render functional features
           post.isAuthor ? (
             <div className='post-options'>
-              <Link to={'/posts/details'}>View</Link>
-              <Link to={'/posts/update'}>Update</Link>
+              <Link to={`/posts/${post._id}`}>Details</Link>
+              <Link to={`/posts/update/${post._id}`}>Update</Link>
               <button
                 onClick={() => {
                   removePost(post._id);
