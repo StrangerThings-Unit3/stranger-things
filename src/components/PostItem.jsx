@@ -36,7 +36,7 @@ const PostItem = ({ post, token }) => {
             </div>
           ) : (
             // If isAuthor is false, render the message link
-            <Link to={'/post/message'}>Message</Link>
+            <Link to={`/posts/${post._id}/messages`}>Message</Link>
           )
         ) : (
           //If there is no token, then render nothing

@@ -175,18 +175,23 @@ export const deletePost = async (id, token) => {
 /*******************************Messages method******************************** */
 
 // Fetch method for posting messages inside a post
-export const postMessage = async (post, token) => {
+export const postMessage = async (id, token, content) => {
   try {
-    const res = await fetch(`${API_URL}/posts`, {
+    const res = await fetch(`${API_URL}/posts/${id}/messages`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(post),
+      body: JSON.stringify({
+        message: {
+          content: content,
+        },
+      }),
     });
     const result = await res.json();
-    console.log(result);
+    alert('Message sent!');
+    return result;
   } catch (error) {
     console.error(`Unable to post message!`, error);
   }
