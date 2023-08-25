@@ -1,35 +1,48 @@
 import React, { useState } from 'react';
-import postMessage from './Api';
+import { postMessage } from '../api';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const postMessage = ({token, postId}) => {
-    
-    const [content, setContent] = useState('');
+const PostMessage = ({ token }) => {
+  // Get id from params and set it to a variable
+  const params = useParams();
+  const id = params.id;
 
-    const onSubmit = async (event) => {
-        event.preventDefault();
-        const response = await fetch(`https://strangers-things.herokuapp.com/api/${COHORT_NAME}/posts/${postId}/messages`, {
-            method: 'POST',
-            headers: {  
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({
-                message: {
-                    content
-                }
-            })  
-        });
-        const data = await response.json();
-        setContent('');
+  // Used navigate to return after submission
+  const goBack = useNavigate();
+
+  // Declare useState variables for the message form
+  const [content, setContent] = useState('');
+
+  // Handle submission form to await a POST request
+  const sendMessage = async (e) => {
+    try {
+      e.preventDefault();
+      // Call POST method for this message form
+      await postMessage(id, token, content);
+      // Navigate back to posts
+      goBack('/posts');
+    } catch (error) {
+      console.error('We have an issue', error);
     }
-    return <>
-    <form onSubmit={onSubmit} className='post-form'>
-        <input type='text' className='post-form-input' value={content} onChange={(event) => { setContent(event.target.value);
-        }} placeholder='What would you like to post?'></input>
-        <button className='submit-button' type='submit'>Submit</button>
+  };
+
+  // Render form
+  return (
+    <form onSubmit={sendMessage} className='post-form'>
+      <input
+        type='text'
+        className='post-form-input'
+        value={content}
+        onChange={(e) => {
+          setContent(e.target.value);
+        }}
+        placeholder='Ask me anything.'
+      ></input>
+      <button className='submit-message' type='submit'>
+        Submit
+      </button>
     </form>
-    </>
+  );
+};
 
-    }
-
-    export default postMessage;
+export default PostMessage;

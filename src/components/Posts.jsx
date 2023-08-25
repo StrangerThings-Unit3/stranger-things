@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PostItem from './PostItem';
+import { Link } from 'react-router-dom';
 
-const Posts = ({ posts }) => {
+const Posts = ({ posts, token }) => {
   const [searchParam, setSearchParam] = useState('');
   const displayPosts = searchParam
     ? posts.filter((post) => post.title.toLowerCase().includes(searchParam))
@@ -23,11 +24,15 @@ const Posts = ({ posts }) => {
             />
           </label>
         </div>
-        <button>Create Post</button>
+        {token ? (
+          <Link to={'/posts/create'}>Create a post</Link>
+        ) : (
+          <p>Please log in or sign up to create a post...</p>
+        )}
       </div>
       <div className='posts'>
         {displayPosts.map((post) => {
-          return <PostItem key={post._id} post={post} />;
+          return <PostItem key={post._id} post={post} token={token} />;
         })}
       </div>
     </div>

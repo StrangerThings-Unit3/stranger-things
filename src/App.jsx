@@ -5,6 +5,10 @@ import Home from './components/Home';
 import AccountForm from './components/AccountForm';
 import Posts from './components/Posts';
 import Profile from './components/Profile';
+import CreatePost from './components/CreatePost';
+import ViewPost from './components/ViewPost';
+import UpdatePost from './components/UpdatePost';
+import PostMessage from './components/PostMessage';
 import './Style.css';
 
 function App() {
@@ -19,7 +23,7 @@ function App() {
   // Fetch all posts with useEffect
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await getAllPosts();
+      const response = await getAllPosts(token);
       setPosts(response);
     };
     fetchPosts();
@@ -75,8 +79,28 @@ function App() {
       </div>
       <Routes>
         <Route path='/' element={<Home userData={userData} />} />
-        <Route path='/posts' element={<Posts posts={posts} />} />
-        <Route path='/profile' element={<Profile userData={userData} />} />
+        <Route
+          path='/posts'
+          element={<Posts posts={posts} setToken={setToken} token={token} />}
+        />
+        <Route
+          path='/posts/create'
+          element={<CreatePost setToken={setToken} token={token} />}
+        />
+        {/* Create a Route for posts/messages */}
+        <Route
+          path='/posts/:id/messages'
+          element={<PostMessage token={token} />}
+        />
+        <Route
+          path='/posts/update/:id'
+          element={<UpdatePost posts={posts} token={token} />}
+        />
+        <Route path='/posts/:id' element={<ViewPost posts={posts} />} />
+        <Route
+          path='/profile'
+          element={<Profile userData={userData} posts={posts} />}
+        />
         <Route
           path='/account/:action'
           element={<AccountForm setToken={setToken} />}

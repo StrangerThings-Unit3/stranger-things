@@ -69,9 +69,14 @@ export const fetchUserData = async (token) => {
 /*******************************Posts methods******************************** */
 
 // Fetch method to get all data
-export async function getAllPosts() {
+export async function getAllPosts(token) {
   try {
-    const res = await fetch(`${API_URL}/posts`);
+    const res = await fetch(`${API_URL}/posts`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const result = await res.json();
     const posts = result.data.posts;
     return posts;
@@ -80,84 +85,114 @@ export async function getAllPosts() {
   }
 }
 
-// Fetch method for posting messages inside a post
-export const postMessage = async (post, token) => {
-  try {
-    const res = await fetch(`${API_URL}/posts`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(post),
-    });
-    const result = await res.json();
-    console.log(result);
-  } catch (error) {
-    console.error(`Unable to post message!`, error);
-  }
-};
-
 // Fetch Method to update a post
-export const updatePost = async (updatePost) => {
+export const updatePost = async (
+  id,
+  token,
+  newTitle,
+  newDescription,
+  newPrice,
+  newLocation,
+  changedDeliver
+) => {
   try {
-    const res = await fetch(`${API_URL}/posts`, {
-      method: 'POST',
+    const res = await fetch(`${API_URL}/posts/${id}`, {
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(updatePost),
+      body: JSON.stringify({
+        post: {
+          title: newTitle,
+          description: newDescription,
+          price: newPrice,
+          location: newLocation,
+          willDeliver: changedDeliver,
+        },
+      }),
     });
     const result = await res.json();
-    console.log(result);
+    return result;
   } catch (error) {
     console.error(`Unable to update post!`, error);
   }
 };
 
 // Fetch method for making a post
+export const makePost = async (
+  title,
+  description,
+  price,
+  location,
+  willDeliver,
+  token
+) => {
+  try {
+    const res = await fetch(`${API_URL}/posts`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        post: {
+          title: title,
+          description: description,
+          price: price,
+          location: location,
+          willDeliver: willDeliver,
+        },
+      }),
+    });
+    const result = await res.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error(`Unable to make post!`, error);
+  }
+};
 
-// export const makePost = async (post, token) => {
-//   try {
-//     const res = await fetch(`${API_URL}/posts`, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//         Authorization: `Bearer ${token}`,
-//       },
-//       body: JSON.stringify({
-//         post: {
-//           title: post.title,
-//           description: post.description,
-//           price: post.price,
-//           willDeliver: post.willDeliver,
-//         }
-//       }),
-//     });
-//     const result = await res.json();
-//     console.log(result);
-//    return result;
-//    } catch (error) {
-//     console.error(`Unable to make post!`, error);
-//   }
-// }
+// Fetch method to delete Post
+export const deletePost = async (id, token) => {
+  //not sure if post_id is correct parameter here
+  try {
+    const res = await fetch(`${API_URL}/posts/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const result = await res.json();
+    console.log(result);
+    window.location.reload();
+  } catch (error) {
+    console.error(`Unable to delete post...`, error);
+  }
+};
 
-// Delete Post
+/*******************************Messages method******************************** */
 
-//   export const deletePost = async (post_id) => {                   //not sure if post_id is correct parameter here
-//     try {
-//       const res = await fetch(`${API_URL}/posts/`, {
-//         method : 'DELETE',
-//         headers: {
-//           'Content-Type': 'application/json',
-//           'Authorization' : `Bearer ${token}`
-//         }
-//     });
-//     const result = await response.json();
-//     console.log(result);
-//     return result;
-//   } catch (error) {
-//     console.error (`Unable to delete post!` , error);
-//   }
-// }
+// Fetch method for posting messages inside a post
+export const postMessage = async (id, token, content) => {
+  try {
+    const res = await fetch(`${API_URL}/posts/${id}/messages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        message: {
+          content: content,
+        },
+      }),
+    });
+    const result = await res.json();
+    alert('Message sent!');
+    return result;
+  } catch (error) {
+    console.error(`Unable to post message!`, error);
+  }
+};
