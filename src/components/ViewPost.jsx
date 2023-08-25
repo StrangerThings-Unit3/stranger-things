@@ -28,6 +28,21 @@ function ViewPost({ posts }) {
       <div className='message-container'></div>
       <p>Created: {post?.createdAt}</p>
       <p>Last updated: {post?.updatedAt}</p>
+      <div className='recieved-messages'>
+        <h2>Messages</h2>
+        {post?.messages.length ? (
+          post?.messages.map((message) => {
+            return (
+              <div key={message._id} className='recieved-message'>
+                <h3>From: {message.fromUser.username}</h3>
+                <p>{message.content}</p>
+              </div>
+            );
+          })
+        ) : (
+          <p>You don't have any messages for this post...</p>
+        )}
+      </div>
     </div>
   );
 }

@@ -21,6 +21,7 @@ const PostMessage = ({ token }) => {
       await postMessage(id, token, content);
       // Navigate back to posts
       goBack('/posts');
+      window.location.reload();
     } catch (error) {
       console.error('We have an issue', error);
     }

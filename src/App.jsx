@@ -97,10 +97,7 @@ function App() {
           element={<UpdatePost posts={posts} token={token} />}
         />
         <Route path='/posts/:id' element={<ViewPost posts={posts} />} />
-        <Route
-          path='/profile'
-          element={<Profile userData={userData} posts={posts} />}
-        />
+        <Route path='/profile' element={<Profile userData={userData} />} />
         <Route
           path='/account/:action'
           element={<AccountForm setToken={setToken} />}
