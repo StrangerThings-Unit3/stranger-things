@@ -25,7 +25,6 @@ function ViewPost({ posts }) {
           <strong>Will Deliver? </strong> {!post?.willDeliver ? 'No' : 'Yes'}
         </p>
       </div>
-      <div className='message-container'></div>
       <p>Created: {post?.createdAt}</p>
       <p>Last updated: {post?.updatedAt}</p>
       <div className='recieved-messages'>
