@@ -1,7 +1,6 @@
 import React from 'react';
 
 function Home({ userData }) {
-  // console.log('user:', userData);
   return (
     <div id='home'>
       {userData ? (
