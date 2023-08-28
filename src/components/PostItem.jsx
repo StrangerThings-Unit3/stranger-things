@@ -7,6 +7,15 @@ const PostItem = ({ post, token }) => {
     await deletePost(id, token);
   };
 
+  const linkStyle = {
+    width: '90px',
+    textDecoration: 'none',
+    fontSize: '1.2rem',
+    fontWeight: '600',
+    padding: '5px 12px',
+    down: '5px',
+  };
+
   return (
     //Render small details for a post
     <div className='post-item' key={post._id}>
@@ -24,9 +33,14 @@ const PostItem = ({ post, token }) => {
           // If isAuthor is true, render functional features
           post.isAuthor ? (
             <div className='post-options'>
-              <Link to={`/posts/${post._id}`}>Details</Link>
-              <Link to={`/posts/update/${post._id}`}>Update</Link>
+              <Link style={linkStyle} to={`/posts/${post._id}`}>
+                Details
+              </Link>
+              <Link style={linkStyle} to={`/posts/update/${post._id}`}>
+                Update
+              </Link>
               <button
+                id='delete-btn'
                 onClick={() => {
                   removePost(post._id);
                 }}
@@ -36,7 +50,9 @@ const PostItem = ({ post, token }) => {
             </div>
           ) : (
             // If isAuthor is false, render the message link
-            <Link to={`/posts/${post._id}/messages`}>Message</Link>
+            <Link style={linkStyle} to={`/posts/${post._id}/messages`}>
+              Message
+            </Link>
           )
         ) : (
           //If there is no token, then render nothing
