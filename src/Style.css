@@ -43,6 +43,10 @@
 
 /* Posts Styling */
 
+.post-page {
+  padding: 50px;
+}
+
 .post-actions {
   padding: 50px;
   display: flex;
@@ -52,6 +56,11 @@
 .search-post {
   display: block;
   margin: 0 10px;
+  font-size: 1.2rem;
+}
+
+.search-post input {
+  font-size: 1rem;
 }
 
 .posts {
@@ -67,7 +76,7 @@
 }
 
 /* Login/Register Styling */
-#account-form {
+#form {
   display: flex;
   flex-direction: column;
   width: 45%;
@@ -157,4 +166,90 @@
 
 .content {
   margin: 10px;
+}
+
+/* View post styling */
+
+.view-container {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.view-post {
+  margin: 50px auto;
+  justify-content: center;
+  background-color: rgb(213, 229, 243);
+  width: 65%;
+  padding: 30px;
+  border-radius: 15px;
+}
+
+.view-post h2 {
+  margin: 20px 0;
+}
+
+.view-post p {
+  margin: 10px;
+}
+
+.recieved-messages-in-details {
+  margin: 30px auto;
+  width: 60%;
+}
+
+.recieved-messages-in-details h2 {
+  margin: 0 0 40px 0;
+  text-align: center;
+}
+
+/* Forms Styling */
+
+#post-form {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  margin: 20px auto;
+  padding: 25px 50px;
+}
+
+#post-form h2 {
+  margin: 20px 0;
+  text-align: center;
+}
+
+#post-form label {
+  font-size: 1.2rem;
+}
+
+#post-form input {
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+#submit-btn {
+  margin: 20px auto 0;
+  width: 30%;
+  padding: 5px 12px;
+  background-color: rgb(41, 177, 0);
+  border: 1px solid rgb(41, 177, 0);
+  font-size: 1rem;
+  font-weight: 600;
+  color: aliceblue;
+  border-radius: 5px;
+}
+
+#delete-btn {
+  margin: 20px auto;
+  width: 10%;
+  padding: 5px 12px;
+  background-color: rgb(177, 41, 0);
+  border: 1px solid rgb(177, 41, 0);
+  font-size: 1rem;
+  font-weight: 600;
+  color: aliceblue;
+  border-radius: 5px;
 }

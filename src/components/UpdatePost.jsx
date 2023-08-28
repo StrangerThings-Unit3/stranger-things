@@ -48,51 +48,57 @@ function UpdatePost({ posts, token }) {
 
   // Render form
   return (
-    <div className='update-form-container'>
-      <form onSubmit={handleSubmit}>
-        <label>Title</label>
-        <input
-          type='text'
-          value={newTitle}
-          onChange={(e) => {
-            setNewTitle(e.target.value);
-          }}
-        />
-        <label htmlFor='description'>Description</label>
-        <input
-          type='text'
-          value={newDescription}
-          onChange={(e) => {
-            setNewDescription(e.target.value);
-          }}
-        />
-        <label htmlFor='price'>Price</label>
-        <input
-          type='text'
-          value={newPrice}
-          onChange={(e) => {
-            setNewPrice(e.target.value);
-          }}
-        />
-        <label htmlFor='location'>Location</label>
-        <input
-          type='text'
-          value={newLocation}
-          onChange={(e) => {
-            setNewLocation(e.target.value);
-          }}
-        />
-        <label htmlFor='willDeliver'>Will Deliver?</label>
+    <form id='post-form' onSubmit={handleSubmit}>
+      <h2>Update</h2>
+      <label>Title</label>
+      <input
+        type='text'
+        value={newTitle}
+        onChange={(e) => {
+          setNewTitle(e.target.value);
+        }}
+        required
+      />
+      <label htmlFor='description'>Description</label>
+      <input
+        type='text'
+        value={newDescription}
+        onChange={(e) => {
+          setNewDescription(e.target.value);
+        }}
+        required
+      />
+      <label htmlFor='price'>Price</label>
+      <input
+        type='text'
+        value={newPrice}
+        onChange={(e) => {
+          setNewPrice(e.target.value);
+        }}
+        required
+      />
+      <label htmlFor='location'>Location</label>
+      <input
+        type='text'
+        value={newLocation}
+        onChange={(e) => {
+          setNewLocation(e.target.value);
+        }}
+      />
+      <label htmlFor='willDeliver'>
+        Will Deliver?
         <input
           type='checkbox'
           value={changedDeliver}
           onChange={(e) => {
-            setChangedDeliver(e.target.value);
+            setChangedDeliver((e.target.value = true));
           }}
         />
-        <button type='submit'>Update Post</button>
-      </form>
-    </div>
+      </label>
+      <button id='submit-btn' type='submit'>
+        Update Post
+      </button>
+    </form>
   );
 }
 export default UpdatePost;

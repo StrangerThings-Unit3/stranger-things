@@ -24,15 +24,15 @@ function ViewPost({ posts }) {
         <p>
           <strong>Will Deliver? </strong> {!post?.willDeliver ? 'No' : 'Yes'}
         </p>
+        <p>Created: {post?.createdAt}</p>
+        <p>Last updated: {post?.updatedAt}</p>
       </div>
-      <p>Created: {post?.createdAt}</p>
-      <p>Last updated: {post?.updatedAt}</p>
-      <div className='recieved-messages'>
+      <div className='recieved-messages-in-details'>
         <h2>Messages</h2>
         {post?.messages.length ? (
           post?.messages.map((message) => {
             return (
-              <div key={message._id} className='recieved-message'>
+              <div key={message._id} className='recieved-messages-for-post'>
                 <h3>From: {message.fromUser.username}</h3>
                 <p>{message.content}</p>
               </div>

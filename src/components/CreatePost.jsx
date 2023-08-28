@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { makePost } from '../api';
 import { useNavigate } from 'react-router-dom';
 
-function CreatePost({ setToken, token }) {
+function CreatePost({ token }) {
   // Create useState variables for input field
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -33,9 +33,9 @@ function CreatePost({ setToken, token }) {
 
   // Create a form
   return (
-    <form onSubmit={handleCreatePost} className='create-post'>
+    <form onSubmit={handleCreatePost} id='post-form'>
       <h2>Create Post</h2>
-      <label htmlFor='title'>Title:</label>
+      <label htmlFor='title'>Title</label>
       <input
         type='text'
         placeholder='Title'
@@ -66,14 +66,18 @@ function CreatePost({ setToken, token }) {
         value={location}
         onChange={(event) => setLocation(event.target.value)}
       />
-      <label>Will Deliver? </label>
-      <input
-        type='checkbox'
-        value={willDeliver}
-        onChange={(event) => setWillDeliver(event.target.value)}
-      />
+      <label>
+        Will Deliver?
+        <input
+          type='checkbox'
+          value={willDeliver}
+          onChange={(event) => setWillDeliver((event.target.value = true))}
+        />
+      </label>
       <br />
-      <button type='submit'>Create Post</button>
+      <button id='submit-btn' type='submit'>
+        Create Post
+      </button>
     </form>
   );
 }

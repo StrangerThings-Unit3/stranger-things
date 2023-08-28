@@ -29,8 +29,10 @@ const PostMessage = ({ token }) => {
 
   // Render form
   return (
-    <form onSubmit={sendMessage} className='post-form'>
+    <form onSubmit={sendMessage} id='post-form'>
+      <label htmlFor='content'>Content</label>
       <input
+        required
         type='text'
         className='post-form-input'
         value={content}
@@ -39,7 +41,7 @@ const PostMessage = ({ token }) => {
         }}
         placeholder='Ask me anything.'
       ></input>
-      <button className='submit-message' type='submit'>
+      <button id='submit-btn' type='submit'>
         Submit
       </button>
     </form>
