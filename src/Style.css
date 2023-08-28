@@ -76,7 +76,7 @@
 }
 
 /* Login/Register Styling */
-#form {
+#account-form {
   display: flex;
   flex-direction: column;
   width: 45%;
