@@ -37,8 +37,6 @@ function UpdatePost({ posts, token }) {
       );
       // Call navigate to return to post list
       navigate('/posts');
-      // Reload once after returning to post list
-      window.location.reload();
       // Alert the user
       alert(`Update completed for ${newTitle}`);
     } catch (error) {
