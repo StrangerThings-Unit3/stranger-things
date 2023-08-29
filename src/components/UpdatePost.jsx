@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { updatePost } from '../api';
 
-function UpdatePost({ posts, token }) {
+function UpdatePost({ setPosts, posts, token }) {
   // Get id from params
   const params = useParams();
   // Set id to an id variable
@@ -26,15 +26,19 @@ function UpdatePost({ posts, token }) {
     try {
       e.preventDefault();
       // Call the awaited patch method containing all the required fields
-      await updatePost(
-        id,
-        token,
-        newTitle,
-        newDescription,
-        newPrice,
-        newLocation,
-        changedDeliver
-      );
+
+      const updatedPost = {
+        title: newTitle,
+        description: newDescription,
+        price: newPrice,
+        location: newLocation,
+        willDeliver: changedDeliver,
+      };
+      await updatePost(id, token, updatedPost);
+
+      setPosts((prevPosts) => {
+        return prevPosts.map((post) => (post._id === id ? updatedPost : post));
+      });
       // Call navigate to return to post list
       navigate('/posts');
       // Alert the user
