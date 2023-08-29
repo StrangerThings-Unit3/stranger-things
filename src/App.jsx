@@ -27,7 +27,7 @@ function App() {
       setPosts(response);
     };
     fetchPosts();
-  }, []);
+  }, [posts]);
 
   // Store JSON web token with useEffect
   useEffect(() => {
@@ -81,7 +81,14 @@ function App() {
         <Route path='/' element={<Home userData={userData} />} />
         <Route
           path='/posts'
-          element={<Posts posts={posts} setToken={setToken} token={token} />}
+          element={
+            <Posts
+              setPosts={setPosts}
+              posts={posts}
+              setToken={setToken}
+              token={token}
+            />
+          }
         />
         <Route
           path='/posts/create'
@@ -94,7 +101,9 @@ function App() {
         />
         <Route
           path='/posts/update/:id'
-          element={<UpdatePost posts={posts} token={token} />}
+          element={
+            <UpdatePost setPosts={setPosts} posts={posts} token={token} />
+          }
         />
         <Route path='/posts/:id' element={<ViewPost posts={posts} />} />
         <Route path='/profile' element={<Profile userData={userData} />} />

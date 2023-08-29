@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import PostItem from './PostItem';
 import { Link } from 'react-router-dom';
 
-const Posts = ({ posts, token }) => {
+const Posts = ({ setPosts, posts, token }) => {
   const [searchParam, setSearchParam] = useState('');
+
   const displayPosts = searchParam
     ? posts.filter((post) => post.title.toLowerCase().includes(searchParam))
     : posts;

@@ -25,7 +25,6 @@ function CreatePost({ token }) {
       alert(`I new post was created for ${title}`);
       // Navigate back to posts
       goBack('/posts');
-      window.location.reload();
     } catch (error) {
       console.error(`Unable to make post! Cause: ${error}`);
     }

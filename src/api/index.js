@@ -86,15 +86,7 @@ export async function getAllPosts(token) {
 }
 
 // Fetch Method to update a post
-export const updatePost = async (
-  id,
-  token,
-  newTitle,
-  newDescription,
-  newPrice,
-  newLocation,
-  changedDeliver
-) => {
+export const updatePost = async (id, token, updatedPost) => {
   try {
     const res = await fetch(`${API_URL}/posts/${id}`, {
       method: 'PATCH',
@@ -102,17 +94,10 @@ export const updatePost = async (
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({
-        post: {
-          title: newTitle,
-          description: newDescription,
-          price: newPrice,
-          location: newLocation,
-          willDeliver: changedDeliver,
-        },
-      }),
+      body: JSON.stringify({ post: updatedPost }),
     });
     const result = await res.json();
+    console.log(result);
     return result;
   } catch (error) {
     console.error(`Unable to update post!`, error);
