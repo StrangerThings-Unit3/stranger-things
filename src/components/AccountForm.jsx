@@ -17,7 +17,6 @@ function AccountForm({ setToken }) {
     setToken(result.data.token);
     if (result.data.token) {
       navigate('/');
-      window.location.reload();
     }
   };
 
